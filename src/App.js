@@ -1,30 +1,25 @@
 import React from 'react';
 import './App.css';
 
-const testApi = 'https://pokeapi.co/api/v2/pokemon/'
+import Header from './components/Header/header'
+import Interface from './components/Interface/interface'
 
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      apiurl: '',
+      apiurl: 'https://pokeapi.co/api/v2/pokemon/',
       restMethod: 'get',
       results: ''
     }
   }
 
-  // test = async () => {
-  //   const raw = await fetch(testApi);
-  //   const data = await raw.json();
-  //   console.log('raw',raw);
-  //   console.log('data',data);
-  // }
-
   makeAPICall = async () => {
     const raw = await fetch(`${this.state.apiurl}`);
     const data = await raw.json();
+    console.log('data',data)
     this.setState({
-      results: [data]
+      results: JSON.stringify(data),
     })
   }
 
@@ -35,34 +30,21 @@ class App extends React.Component {
   }
 
   render () {
-    // this.test()
     return (
-        <div className="App">
-          <header className="App-header">
-            <h1>RESTy</h1>
-          </header>
-            <div className="Form">
-              <form>
-                <input onChange={this.handleChange} type="text" id="apiurl" name="urlpath" placeholder="api url path"></input>
-                <div className="RESTmethods">
-                  <span>GET</span><span>POST</span><span>PUT</span><span>DELETE</span>
-                </div>
-              </form>
-                  <button onClick={this.makeAPICall}>Go!</button>
-                <article className="results">results: 
-                  <div>
-                    {this.state.results.length
-                      ? this.state.results
-                      : 'null'
-                    }
-                  </div>
-                  <p>{this.state.results}</p>
-                </article>
-            </div>
-          <footer>
-            Codefellows JS 401d34 Lab 28 Kevin Dreyer
-          </footer>
+      <div className="App">
+        <Header />
+        <form className="URLform">
+          <input onChange={this.handleChange} type="text" name="urlpath" placeholder="api url path"></input>
+        </form>
+        <div className="RESTmethods">
+          <span>GET</span><span>POST</span><span>PUT</span><span>DELETE</span>
+          <button onClick={this.makeAPICall}>Go!</button>
         </div>
+        <Interface content={this.state.results} />
+        <footer>
+          Codefellows JS 401d34 Lab 29 Kevin Dreyer
+        </footer>
+      </div>
     );
   }
 }
