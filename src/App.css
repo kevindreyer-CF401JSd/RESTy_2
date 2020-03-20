@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Form {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+}
+#apiurl {
+  width: 90%;
+
+}
+.RESTmethods {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.results {
+  width: 90%;
+  min-height: 60vh;
+  border: 5px solid grey;
+  align-items: left;
+  text-align: left;
+}
+
+footer {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
