@@ -71,7 +71,7 @@ class App extends React.Component {
         <form className="URLform">
           <input onChange={this.handleChange} type="text" name="urlpath" placeholder='Place URL here'></input>
         </form>
-        <div classnName="buttons">
+        <div className="buttons">
           <div className="RESTmethods">
             <button className="method" id={get_class} onClick={() => this.changeColor('GET')}>GET</button>
             <button className="method" id={post_class} onClick={() => this.changeColor('POST')}>POST</button>
