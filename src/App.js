@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Header from './components/Header/header'
+// import Header from './components/Header/header'
 import Interface from './components/Interface/interface'
 
 class App extends React.Component {
@@ -68,7 +68,6 @@ class App extends React.Component {
     let delete_class = this.state.selectDELETE ? "RESTunselected" : "RESTselected"
     return (
       <div className="App">
-        <Header />
         <form className="URLform">
           <input onChange={this.handleChange} type="text" name="urlpath" placeholder='Place URL here'></input>
         </form>
@@ -84,9 +83,6 @@ class App extends React.Component {
           </div>
         </div>
         <Interface content={this.state.results} />
-        <footer>
-          Codefellows JS 401d34 Lab 29 Kevin Dreyer
-        </footer>
       </div>
     );
   }
