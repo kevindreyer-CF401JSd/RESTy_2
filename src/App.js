@@ -73,10 +73,10 @@ class App extends React.Component {
         </form>
         <div classnName="buttons">
           <div className="RESTmethods">
-            <button className="method" className={get_class} onClick={() => this.changeColor('GET')}>GET</button>
-            <button className="method" className={post_class} onClick={() => this.changeColor('POST')}>POST</button>
-            <button className="method" className={put_class} onClick={() => this.changeColor('PUT')}>PUT</button>
-            <button className="method" className={delete_class} onClick={() => this.changeColor('DELETE')}>DELETE</button>
+            <button className="method" id={get_class} onClick={() => this.changeColor('GET')}>GET</button>
+            <button className="method" id={post_class} onClick={() => this.changeColor('POST')}>POST</button>
+            <button className="method" id={put_class} onClick={() => this.changeColor('PUT')}>PUT</button>
+            <button className="method" id={delete_class} onClick={() => this.changeColor('DELETE')}>DELETE</button>
             <div>
               <button className="run" onClick={this.makeAPICall}>RUN</button>
             </div>

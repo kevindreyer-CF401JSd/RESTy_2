@@ -1,5 +1,4 @@
-li {
-
+li.nav {
   list-style-type: none;
   display: inline;
   margin: 0 auto;

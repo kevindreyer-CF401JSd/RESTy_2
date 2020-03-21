@@ -46,22 +46,27 @@
   justify-content: center;
 }
 
-.RESTmethods+button {
-  width: 80px;
-  height: 40px;
-  margin: 0 3em;
-  padding: 1em;
+.method {
   color: white;
-  border-radius: 4px;
+  width: 160px;
+  border: 3px solid black;
+  border-radius: 2px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
-.RESTunselected {
+#RESTunselected {
   background-color: black;
   color: white;
 }
 
-.RESTselected {
-  background-color: white;
+#RESTselected {
+  background-color: whitesmoke;
   color: black;
 }
 
@@ -70,14 +75,18 @@
 }
 
 .run {
-  width: 60px;
-  height: 40px;
-  margin: 0 3em;
+  background-color: whitesmoke;
   border: 3px solid black;
   border-radius: 2px;
-  padding: 1em;
-  background-color: white;
   color: black;
+  width: 160px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .run:hover {
