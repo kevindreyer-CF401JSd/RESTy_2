@@ -8,14 +8,18 @@ class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      apiurl: 'https://pokeapi.co/api/v2/pokemon/',
-      restMethod: 'get',
-      results: ''
+      apiurl: '',
+      restMethod: 'GET',
+      results: '',
+      selectGET: true,
+      selectPOST: true,
+      selectPUT: true,
+      selectDELETE: true
     }
   }
 
   makeAPICall = async () => {
-    const raw = await fetch(`${this.state.apiurl}`);
+    const raw = await fetch(this.state.apiurl, {method: this.state.restMethod});
     const data = await raw.json();
     console.log('data',data)
     this.setState({
@@ -29,16 +33,55 @@ class App extends React.Component {
     });
   }
 
+  changeColor = (val) => {
+    this.setState({restMethod: val})
+    if (val === 'GET') {
+      this.setState({selectGET: !this.state.selectGET})
+      if (!this.state.selectPOST) this.setState({selectPOST: !this.state.selectPOST})
+      if (!this.state.selectPUT) this.setState({selectPUT: !this.state.selectPUT})
+      if (!this.state.selectDELETE) this.setState({selectDELETE: !this.state.selectDELETE})
+    } 
+    if (val === 'POST') {
+      if (!this.state.selectGET) this.setState({selectGET: !this.state.selectGET})
+      this.setState({selectPOST: !this.state.selectPOST})
+      if (!this.state.selectPUT) this.setState({selectPUT: !this.state.selectPUT})
+      if (!this.state.selectDELETE) this.setState({selectDELETE: !this.state.selectDELETE})
+    }
+    if (val === 'PUT') {
+      if (!this.state.selectGET) this.setState({selectGET: !this.state.selectGET})
+      if (!this.state.selectPOST) this.setState({selectPOST: !this.state.selectPOST})
+      this.setState({selectPUT: !this.state.selectPUT})
+      if (!this.state.selectDELETE) this.setState({selectDELETE: !this.state.selectDELETE})
+    }
+    if (val === 'DELETE') {
+      if (!this.state.selectGET) this.setState({selectGET: !this.state.selectGET})
+      if (!this.state.selectPOST) this.setState({selectPOST: !this.state.selectPOST})
+      if (!this.state.selectPUT) this.setState({selectPUT: !this.state.selectPUT})
+      this.setState({selectDELETE: !this.state.selectDELETE})
+    }
+  }
+
   render () {
+    let get_class = this.state.selectGET ? "RESTunselected" : "RESTselected"
+    let post_class = this.state.selectPOST ? "RESTunselected" : "RESTselected"
+    let put_class = this.state.selectPUT ? "RESTunselected" : "RESTselected"
+    let delete_class = this.state.selectDELETE ? "RESTunselected" : "RESTselected"
     return (
       <div className="App">
         <Header />
         <form className="URLform">
-          <input onChange={this.handleChange} type="text" name="urlpath" placeholder="api url path"></input>
+          <input onChange={this.handleChange} type="text" name="urlpath" placeholder='Place URL here'></input>
         </form>
-        <div className="RESTmethods">
-          <span>GET</span><span>POST</span><span>PUT</span><span>DELETE</span>
-          <button onClick={this.makeAPICall}>Go!</button>
+        <div classnName="buttons">
+          <div className="RESTmethods">
+            <button className="method" className={get_class} onClick={() => this.changeColor('GET')}>GET</button>
+            <button className="method" className={post_class} onClick={() => this.changeColor('POST')}>POST</button>
+            <button className="method" className={put_class} onClick={() => this.changeColor('PUT')}>PUT</button>
+            <button className="method" className={delete_class} onClick={() => this.changeColor('DELETE')}>DELETE</button>
+            <div>
+              <button className="run" onClick={this.makeAPICall}>RUN</button>
+            </div>
+          </div>
         </div>
         <Interface content={this.state.results} />
         <footer>

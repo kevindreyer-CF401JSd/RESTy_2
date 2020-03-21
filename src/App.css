@@ -31,9 +31,11 @@
 
 .URLform {
   margin: 5px auto;
+  width: 90%;
 }
 
 .URLform * {
+  margin: 5px auto;
   width: 90%;
 }
 
@@ -44,14 +46,42 @@
   justify-content: center;
 }
 
-.RESTmethods * {
-  width: 50px;
+.RESTmethods+button {
+  width: 80px;
+  height: 40px;
   margin: 0 3em;
-  border: 1px solid black;
+  padding: 1em;
+  color: white;
+  border-radius: 4px;
+}
+
+.RESTunselected {
+  background-color: black;
+  color: white;
+}
+
+.RESTselected {
+  background-color: white;
+  color: black;
+}
+
+.method:hover {
+  border: 3px solid red;
+}
+
+.run {
+  width: 60px;
+  height: 40px;
+  margin: 0 3em;
+  border: 3px solid black;
   border-radius: 2px;
   padding: 1em;
-  background-color: #282c34;
-  color: white;
+  background-color: white;
+  color: black;
+}
+
+.run:hover {
+  background-color: gray;
 }
 
 .Interface {
