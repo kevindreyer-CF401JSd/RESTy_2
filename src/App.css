@@ -10,12 +10,10 @@
   height: 12vmin;
   pointer-events: none;
   position: absolute;
-  /* margin-top: 10em; */
   right: 50%;
   top: 25%;
   margin-left: auto;
   margin-right: auto;
-  /* clear: left; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,6 +31,10 @@
   justify-content: left;
   font-size: calc(8px + 1vmin);
   color: white;
+}
+
+.Navbar {
+  justify-content: center;
 }
 
 .URLform {

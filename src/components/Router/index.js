@@ -7,30 +7,45 @@ import Navbar from '../Navbar/navbar'
 import History from '../History'
 import App from '../../App'
 
-const Router = () => {
-  return (
-    <BrowserRouter>
-      <Header />
-      <Navbar />
-      <Switch>
-        <Route path="/history">
-          <History />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        <Route path="/">
-          <App />
-        </Route>
-      </Switch>
-      <footer>
-        Codefellows JS 401d34 Lab 29 Kevin Dreyer
-      </footer>
-    </BrowserRouter>
-  )
+class Router extends React.Component {
+  constructor(props) {
+    super(props)
+    // this.handleAppHistory = this.handleAppHistory.bind(this);
+    // this.handleHistoryHistory = this.handleHistoryHistory.bind(this);
+    this.state = { history: ['https://pokeapi.co/api/v2/pokemon/'] };
+  }
+
+  // handleAppHistory(history) {
+  //   this.setState({ history });
+  // }
+
+  render () {
+    const history = this.state.history
+    return (
+      <BrowserRouter>
+        <Header />
+        <Navbar />
+        <Switch>
+          <Route path="/history">
+            <History content={history}/>
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/">
+            <App />
+          </Route>
+        </Switch>
+        <footer>
+          Codefellows JS 401d34 Lab 29 Kevin Dreyer
+        </footer>
+      </BrowserRouter>
+    )
+  }
 }
+
 
 export default Router

@@ -2,38 +2,42 @@ import React from 'react';
 import './App.css';
 import logo from './24278.svg';
 
-// import Header from './components/Header/header'
 import Interface from './components/Interface/interface'
 
 class App extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
+    // this.handleHistoryChange = this.handleHistoryChange.bind(this)
     this.state = {
       apiurl: '',
       restMethod: 'GET',
       results: '',
-      selectGET: true,
+      selectGET: false,
       selectPOST: true,
       selectPUT: true,
       selectDELETE: true,
       loading: false,
+      history: [],
     } 
   }
+
+  // handleHistoryChange(h) {
+  //   this.props.onHistoryChange(h.target.value)
+  // }
 
   handleError = err => {
     console.error('handleError',err)
     return new Response(JSON.stringify({
       code: 400,
       ok: false,
-      message: 'Something went wrong'
+      message: 'Something went wrong',
+      url: this.state.apiurl
     }))
   }
 
   handleLoading = stat => {
-    let timer = `${Date.now()} status of fetch ${stat}`
-    console.log(timer)
     this.setState({
-      results: 'RESTy is waiting for response from REST api',
+      results: `RESTy is waiting for response from REST api: ${this.state.apiurl}`,
       loading: stat,
     })
   }
@@ -50,8 +54,9 @@ class App extends React.Component {
           results: `Error: ${response.status.toString()}`,
         })
       } else {
+        this.state.history.push(this.state.apiurl);
         const data = await response.json();
-        // console.log('---- data',data);
+        console.log('---- history',this.state.history);
         this.setState({
           results: JSON.stringify(data),
         })
