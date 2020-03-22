@@ -21,8 +21,9 @@ class App extends React.Component {
     this.handleHistoryChange = this.handleHistoryChange.bind(this)
   }
 
-  handleHistoryChange(history) {
-    this.props.onHistoryChange(history)
+  handleHistoryChange(h) {
+    console.log('this.props-------',h)
+    // this.props.onHistoryChange(h)
   }
 
   handleError = err => {
@@ -43,7 +44,7 @@ class App extends React.Component {
   }
 
   makeAPICall = async () => {
-    // console.log('-- apiurl',this.state.apiurl);
+    console.log('-- apiurl',this.state.apiurl);
       this.handleLoading(true)
       const response = await (fetch(this.state.apiurl, {method: this.state.restMethod})
         .catch(this.handleError));
@@ -54,8 +55,8 @@ class App extends React.Component {
           results: `Error: ${response.status.toString()}`,
         })
       } else {
-        // this.state.history.push(this.state.apiurl);
-        // this.handleHistoryChange(this.state.apiurl);
+        // console.log('-- in makeAPicall ----',this.state.apiurl);
+        this.handleHistoryChange(this.state.apiurl);
         // this.props.onHistoryChange(this.state.apiurl);
         const data = await response.json();
         this.setState({

@@ -11,12 +11,11 @@ class Router extends React.Component {
   constructor(props) {
     super(props)
     this.handleAppHistory = this.handleAppHistory.bind(this);
-    // this.handleHistoryHistory = this.handleHistoryHistory.bind(this);
     this.state = { history: ['https://pokeapi.co/api/v2/pokemon/'] };
   }
 
-  handleAppHistory(history) {
-    this.setState({ history });
+  handleAppHistory(h) {
+    this.setState({ history: this.state.history.push(h) });
   }
 
   render () {
@@ -38,7 +37,8 @@ class Router extends React.Component {
           <Route path="/">
             <App 
               content={history}
-              onHistoryChange={this.handleAppHistory} />
+              onHistoryChange={this.handleAppHistory} 
+            />
           </Route>
         </Switch>
         <footer>
