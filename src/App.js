@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import logo from './24278.svg';
 
 // import Header from './components/Header/header'
 import Interface from './components/Interface/interface'
@@ -14,7 +15,8 @@ class App extends React.Component {
       selectGET: true,
       selectPOST: true,
       selectPUT: true,
-      selectDELETE: true
+      selectDELETE: true,
+      loading: false,
     } 
   }
 
@@ -32,16 +34,17 @@ class App extends React.Component {
     console.log(timer)
     this.setState({
       results: 'RESTy is waiting for response from REST api',
+      loading: stat,
     })
   }
 
   makeAPICall = async () => {
     // console.log('-- apiurl',this.state.apiurl);
-      this.handleLoading(false)
+      this.handleLoading(true)
       const response = await (fetch(this.state.apiurl, {method: this.state.restMethod})
         .catch(this.handleError));
       // console.log('---- response',response);
-      this.handleLoading(true)
+      this.handleLoading(false)
       if (!response.ok) {
         this.setState({
           results: `Error: ${response.status.toString()}`,
@@ -94,6 +97,7 @@ class App extends React.Component {
     let post_class = this.state.selectPOST ? "RESTunselected" : "RESTselected"
     let put_class = this.state.selectPUT ? "RESTunselected" : "RESTselected"
     let delete_class = this.state.selectDELETE ? "RESTunselected" : "RESTselected"
+    let loadid = this.state.loading ? "loading" : "notloading"
     return (
       <div className="App">
         <form className="URLform">
@@ -110,6 +114,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <img src={logo} className="App-logo" id={loadid} alt="logo" />
         <Interface content={this.state.results} />
       </div>
     );

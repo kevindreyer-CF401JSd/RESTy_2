@@ -7,14 +7,20 @@
 }
 
 .App-logo {
-  height: 4vmin;
+  height: 12vmin;
   pointer-events: none;
+  position: absolute;
+  /* margin-top: 10em; */
+  right: 50%;
+  top: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  /* clear: left; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
-    fill: lightblue
   }
 }
 
@@ -123,6 +129,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#loading {
+  visibility: visible;
+}
+
+#notloading {
+  visibility: hidden;
 }
 
 footer {
