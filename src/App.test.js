@@ -29,4 +29,29 @@ describe('<App/> (enzyme test)', () => {
       expect(app.state('results')).toEqual(JSON.stringify(testRESTy))
     })
   })
+
+  it('Post toggle sets POST', () => {
+    const app = mount(<App />)
+    const button = app.find({ children: 'POST' })
+    button.simulate('click')
+    expect(app.state('restMethod')).toEqual('POST')
+  })
+  it('Put toggle sets PUT', () => {
+    const app = mount(<App />)
+    const button = app.find({ children: 'PUT' })
+    button.simulate('click')
+    expect(app.state('restMethod')).toEqual('PUT')
+  })
+  it('Delete toggle sets DELETE', () => {
+    const app = mount(<App />)
+    const button = app.find({ children: 'DELETE' })
+    button.simulate('click')
+    expect(app.state('restMethod')).toEqual('DELETE')
+  })
+  it('Get toggle sets GET', () => {
+    const app = mount(<App />)
+    const button = app.find({ children: 'GET' })
+    button.simulate('click')
+    expect(app.state('restMethod')).toEqual('GET')
+  })
 })
