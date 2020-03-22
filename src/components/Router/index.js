@@ -4,6 +4,7 @@ import About from '../About'
 import Contact from '../Contact'
 import Header from '../Header/header'
 import Navbar from '../Navbar/navbar'
+import History from '../History'
 import App from '../../App'
 
 const Router = () => {
@@ -12,6 +13,9 @@ const Router = () => {
       <Header />
       <Navbar />
       <Switch>
+        <Route path="/history">
+          <History />
+        </Route>
         <Route path="/about">
           <About />
         </Route>
