@@ -15,16 +15,44 @@ class App extends React.Component {
       selectPOST: true,
       selectPUT: true,
       selectDELETE: true
-    }
+    } 
+  }
+
+  handleError = err => {
+    console.error('handleError',err)
+    return new Response(JSON.stringify({
+      code: 400,
+      ok: false,
+      message: 'Something went wrong'
+    }))
+  }
+
+  handleLoading = stat => {
+    let timer = `${Date.now()} status of fetch ${stat}`
+    console.log(timer)
+    this.setState({
+      results: 'RESTy is waiting for response from REST api',
+    })
   }
 
   makeAPICall = async () => {
-    const raw = await fetch(this.state.apiurl, {method: this.state.restMethod});
-    const data = await raw.json();
-    console.log('data',data)
-    this.setState({
-      results: JSON.stringify(data),
-    })
+    // console.log('-- apiurl',this.state.apiurl);
+      this.handleLoading(false)
+      const response = await (fetch(this.state.apiurl, {method: this.state.restMethod})
+        .catch(this.handleError));
+      // console.log('---- response',response);
+      this.handleLoading(true)
+      if (!response.ok) {
+        this.setState({
+          results: `Error: ${response.status.toString()}`,
+        })
+      } else {
+        const data = await response.json();
+        // console.log('---- data',data);
+        this.setState({
+          results: JSON.stringify(data),
+        })
+      }
   }
 
   handleChange = e => {

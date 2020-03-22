@@ -8,7 +8,7 @@ import App from './App';
 
 describe('<App/> (enzyme test)', () => {
   beforeEach(() => {
-    fetchMock.restore()
+    fetchMock.restore() //so test don't interfere with each other
   })
   it('App is alive, RUN button exists', () => {
     let app = shallow(<App />)
