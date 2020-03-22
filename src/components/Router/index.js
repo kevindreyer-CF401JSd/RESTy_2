@@ -10,14 +10,14 @@ import App from '../../App'
 class Router extends React.Component {
   constructor(props) {
     super(props)
-    // this.handleAppHistory = this.handleAppHistory.bind(this);
+    this.handleAppHistory = this.handleAppHistory.bind(this);
     // this.handleHistoryHistory = this.handleHistoryHistory.bind(this);
     this.state = { history: ['https://pokeapi.co/api/v2/pokemon/'] };
   }
 
-  // handleAppHistory(history) {
-  //   this.setState({ history });
-  // }
+  handleAppHistory(history) {
+    this.setState({ history });
+  }
 
   render () {
     const history = this.state.history
@@ -36,7 +36,9 @@ class Router extends React.Component {
             <Contact />
           </Route>
           <Route path="/">
-            <App />
+            <App 
+              content={history}
+              onHistoryChange={this.handleAppHistory} />
           </Route>
         </Switch>
         <footer>

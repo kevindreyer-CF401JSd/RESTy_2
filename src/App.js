@@ -7,7 +7,6 @@ import Interface from './components/Interface/interface'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    // this.handleHistoryChange = this.handleHistoryChange.bind(this)
     this.state = {
       apiurl: '',
       restMethod: 'GET',
@@ -17,13 +16,14 @@ class App extends React.Component {
       selectPUT: true,
       selectDELETE: true,
       loading: false,
-      history: [],
-    } 
+      // history: this.props.history,
+    };
+    this.handleHistoryChange = this.handleHistoryChange.bind(this)
   }
 
-  // handleHistoryChange(h) {
-  //   this.props.onHistoryChange(h.target.value)
-  // }
+  handleHistoryChange(history) {
+    this.props.onHistoryChange(history)
+  }
 
   handleError = err => {
     console.error('handleError',err)
@@ -54,9 +54,10 @@ class App extends React.Component {
           results: `Error: ${response.status.toString()}`,
         })
       } else {
-        this.state.history.push(this.state.apiurl);
+        // this.state.history.push(this.state.apiurl);
+        // this.handleHistoryChange(this.state.apiurl);
+        // this.props.onHistoryChange(this.state.apiurl);
         const data = await response.json();
-        console.log('---- history',this.state.history);
         this.setState({
           results: JSON.stringify(data),
         })

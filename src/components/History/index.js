@@ -19,5 +19,4 @@ const History = ({content}) => {
   )
 }
 
-
 export default History
